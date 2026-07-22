@@ -1,12 +1,13 @@
 // ===== ตัวนับคนเข้าชมเว็บ (Visitor Counter) =====
-// ใช้ CountAPI (ฟรี ไม่ต้องมี API key) เก็บค่าจำนวนครั้งที่เข้าชม
+// ใช้ CountAPI ตัวใหม่ (ฟรี ไม่ต้องมี API key) เก็บค่าจำนวนครั้งที่เข้าชม
+// หมายเหตุ: countapi.xyz ตัวเก่าปิดให้บริการไปแล้ว จึงเปลี่ยนมาใช้ตัวนี้แทน
 async function loadVisitorCounter() {
   const el = document.getElementById("visitor-count");
   if (!el) return;
   try {
-    const namespace = "suphawich-portfolio-032"; // เปลี่ยนได้ตามต้องการให้ไม่ซ้ำกับคนอื่น
-    const key = "home";
-    const res = await fetch(`https://api.countapi.xyz/hit/${namespace}/${key}`);
+    // ตั้งชื่อ key ให้ไม่ซ้ำกับเว็บอื่น (เปลี่ยนได้ตามต้องการ)
+    const key = "suphawich-portfolio-032-home";
+    const res = await fetch(`https://countapi.mileshilliard.com/api/v1/hit/${key}`);
     const data = await res.json();
     el.textContent = data.value.toLocaleString("th-TH");
   } catch (err) {
